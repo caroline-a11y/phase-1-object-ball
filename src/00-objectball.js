@@ -114,3 +114,83 @@ function gameObject(){
     }
   }
 }
+function numPointsScored(playerName){
+    const gamers = gameObject()
+    for(const team in gamers){
+        for(const player in gamers[team]["players"]){
+          if(player === playerName){
+            return gamers[team]["players"][player]["points"]
+          }
+        }
+    }
+}
+
+function shoeSize(playerName){
+    const gamers = gameObject();
+    for(const team in gamers){
+        for(const player in gamers[team]["players"]){
+          if(player === playerName){
+            return gamers[team]["players"][player]["shoe"]
+          }
+        }
+    }
+}
+
+function teamColors(teamName) {
+    const gamers = gameObject()
+    for(const team in gamers){
+        if(gamers[team].teamName === teamName){
+            return gamers[team]["colors"]
+        }
+    }
+}
+
+function teamNames() {
+    const gamers = gameObject()
+    let identity = []
+    for(const team in gamers){
+        identity.push(gamers[team].teamName)
+    }
+
+    return identity
+}
+
+function playerNumbers(teamName){
+    const gamers = gameObject()
+    let playerNumbers = []
+    for(const team in gamers){
+        if(gamers[team].teamName === teamName){
+            for(const player in gamers[team]["players"]){
+                playerNumbers.push(gamers[team]["players"][player].number)
+            }
+            return playerNumbers
+        }
+    }
+}
+
+function playerStats(playerName){
+    const gamers = gameObject();
+    for(const team in gamers){
+        for(const player in gamers[team]["players"]){
+          if(player === playerName){
+            return gamers[team]["players"][player]
+          }
+        }
+    }
+}
+
+function bigShoeRebounds(){
+    const gamers = gameObject();
+    let gamerWithLargestShoeSize = ""
+    let bigestShoeSize = 0
+    for(const team in gamers){
+        for(const player in gamers[team]["players"]){
+          if(shoeSize(player)>largestShoeSize){
+            bigestShoeSize = shoeSize(player)
+            gamerWithLargestShoeSize = player
+          }
+        }
+    }
+
+    return playerStats(playerWithLargestShoeSize).rebounds
+}
